@@ -183,7 +183,7 @@ with zipfile.ZipFile('../input/train_jpg_%s.zip' % fileno, 'r') as train_zip:
                 image_files = [x.path for x in os.scandir(images_dir)]
                 for image_file in image_files:
                     if image_file in bad_images:
-                        break  # there are 4 bad images, so break when meet them.
+                        continue  # there are 4 bad images, so continue when meet them.
                     dat = classify_and_plot(image_file, classify=False)
                     df_row = [image_file.replace(images_dir,'')] + get_data_from_image(dat)
                     image_feature_df.loc[len(image_feature_df)] = df_row
